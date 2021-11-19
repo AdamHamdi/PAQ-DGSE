@@ -4,7 +4,7 @@
 
 <div class="  mt-5">
     <div class="row m-0 w-100">
-        <div class=" col-xl-8 col-lg-10 col-md-10 col-sm-12 mx-auto">
+        <div class="col-xl-8 col-lg-10 col-md-10 col-sm-12 mx-auto">
             <div class="card border-0">
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-12  col-sm-12  d-md-block p-5">
