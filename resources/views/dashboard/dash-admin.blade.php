@@ -1,8 +1,6 @@
 @extends('layouts.main')
 
 @section('content')
-
-@endsection
 @if(Session::has('danger'))
         <div class="alert alert-danger">
             {{ Session::get('danger') }} @php Session::forget('danger'); @endphp
@@ -16,3 +14,6 @@
             {{ Session::get('success') }} @php Session::forget('success'); @endphp
         </div>
         @endif
+        hello
+
+@endsection

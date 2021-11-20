@@ -3,20 +3,21 @@
 @section('content')
 <div class=" login mt-5">
     <div class="row m-0 w-100">
-        <div class="col-xl-8 col-lg-10 col-md-12 col-sm-12 mx-auto">
+        <div class="col-xl-8 col-lg-12 col-sm-12  mx-auto">
         <div class="card  border-0 ">
             <div class="row align-items-center">
             <div class="col-lg-6 col-md-12 col-sm-12 d-md-block p-5">
                     <img src="{{ asset('images/auth-login.jpg')}}" alt="" class="img-fluid img-login " >
                 </div>
                 <div class="col-lg-6 col-md-12 col-sm-12">
-                <div class="d-flex justify-content-around">
-                            <h2 class="text-purple">PAQ-DGSE</h2>
-                        </div>
+                
                     <div class="card-body">
+                    <div class="d-flex justify-content-around">
+                            <h5 class="text-purple">PAQ-DGSE</h5>
+                        </div>
                         <form method="POST" action="{{ route('auth') }}">
                             @csrf
-                            <img src="../assets/images/logo-dark.png" alt="" class="img-fluid mb-4">
+                           
                             <h4 class="mb-3 f-w-400">Connectez-vous à votre compte</h4>
                             <div class="input-group mb-2">
                                 <div class="input-group-prepend">

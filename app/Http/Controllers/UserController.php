@@ -18,7 +18,7 @@ class UserController extends Controller
         return view('dashboard.dash-admin',['admin'=>$admin]);
         
     }
-    public function store(Request $request){
+    public function ResActionStore(Request $request){
         request()->validate([
 
             'password' => 'required| min:8',
@@ -26,21 +26,32 @@ class UserController extends Controller
             'prenom'=>'required|min:2|max:255',
             'adresse'=>'required',
             'tel'=>'required|min:8|numeric',
-           
+            'photo'=>'required'
             ]);
-
-        $user= new User();
-        $user->nom=$request->nom;
-        $user->prenom=$request->prenom;
-        $user->adresse=$request->adresse;
-        $user->tel=$request->tel;
-        
-        $user->role=$request->role;
-        $user->email=$request->email;
-        $user->password=bcrypt($request->password);
-        $user->save();
-        return redirect('/dashboard')->with("success", "Vous étes inscrit maintenant !");
-
+           
+            
+          
+            $user= new User();
+            if($request->hasFile('photo')){
+                $file=$request->file('photo');
+                $name=$file->getClientOriginalName();
+                $file->move(public_path().'images/photos/', $name);
+                $user->photo=$name;}
+            
+            $user->nom=$request->nom;
+            $user->prenom=$request->prenom;
+            $user->adresse=$request->adresse;
+            $user->tel=$request->tel;
+            $user->role=$request->role;
+            $user->email=$request->email;
+            $user->password=bcrypt($request->password); 
+            // dd($user) ;          
+            $user->save();
+            $resaction=new ResAction();
+            $resaction->user_id=$user->id;
+            $resaction->save();
+            if (Auth::attempt(['email'=>$request->email,'password'=>$request->password])) {}
+            return redirect('/dashboard')->with("success", "Vous étes inscrit maintenant !");
     }
     public function auth(Request $request){
         if(Auth::attempt([ 'email' => $request->email, 'password' => $request->password ])){
@@ -48,4 +59,47 @@ class UserController extends Controller
             return view('dashboard.dash-admin');
     }
 }
+    public function ResDomaineStore(Request $request){
+        request()->validate([
+
+            'password' => 'required| min:8',
+            'nom'=>'required|min:2|max:255',
+            'prenom'=>'required|min:2|max:255',
+            'adresse'=>'required',
+            'tel'=>'required|min:8|numeric',
+            'photo'=>'required'
+            ]);
+           
+           
+          
+            $user= new User();
+            if($request->hasFile('photo')){
+                $file=$request->file('photo');
+                $name=$file->getClientOriginalName();
+                $file->move(public_path().'/images/photos/', $name);
+                $user->photo=$name;
+                }
+            
+           
+            $user->nom=$request->nom;
+            $user->prenom=$request->prenom;
+            $user->adresse=$request->adresse;
+            $user->tel=$request->tel;
+            $user->role=$request->role;
+            $user->email=$request->email;
+            $user->password=bcrypt($request->password); 
+            // dd($user) ;          
+            $user->save();
+            $resaction=new Resdomaine();
+            $resaction->user_id=$user->id;
+            $resaction->save();
+            if (Auth::attempt(['email'=>$request->email,'password'=>$request->password])) {}
+            return redirect('/dashboard')->with("success", "Vous étes inscrit maintenant !");
+    }
+    public function logout(){
+        Auth::logout();
+        return redirect('/login');
+    
+     }
+
 }
