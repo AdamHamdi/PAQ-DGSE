@@ -4,18 +4,19 @@
 
 <div class=" login mt-5">
     <div class="row m-0 w-100">
-        <div class=" col-xl-8 col-lg-10 col-md-10 col-sm-12 mx-auto">
+        <div class=" col-xl-8 col-lg-12 col-sm-12  mx-auto">
             <div class="card border-0">
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-12  col-sm-12  d-md-block p-5">
                         <img src="{{ asset('images/auth-login.jpg')}}" alt="" class="img-fluid img-login ">
                     </div>
                     <div class="col-lg-6 col-md-12  col-sm-12  p-0">
-                    <div class="d-flex justify-content-around">
-                            <h2 class="text-purple">PAQ-DGSE</h2>
-                        </div>
+                    
                         <div class="card-body">
-                            <form method="POST" action="{{ route('register') }}">
+                        <div class="d-flex justify-content-around">
+                            <h5 class="text-purple">PAQ-DGSE</h5>
+                        </div>
+                            <form method="POST" action="{{ route('ResDomaineStore') }}"enctype="multipart/form-data">
                                 @csrf
                                 <h4 class="mb-3 f-w-400">Créer votre compte responsable de domaine</h4>
                                 <input type="hidden" name="role" value="responsable domaine">
@@ -25,12 +26,12 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="feather icon-user"></i></span>
                                             </div>
-                                            <input id="name" type="text"
-                                                class="form-control @error('name') is-invalid @enderror"
-                                                placeholder="Saisir votre nom et prénom" autocomplete="name" autofocus
-                                                name="name" value="{{ old('name') }}" required autocomplete="name"
+                                            <input id="nom" type="text"
+                                                class="form-control @error('nom') is-invalid @enderror"
+                                                placeholder="Saisir votre nom " autocomplete="nom" autofocus
+                                                name="nom" value="{{ old('nom') }}" required autocomplete="nom"
                                                 autofocus>
-                                            @error('name')
+                                            @error('nom')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -38,6 +39,24 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-12 px-1">
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="feather icon-user"></i></span>
+                                            </div>
+                                            <input id="prenom" type="prenom"
+                                                class="form-control @error('prenom') is-invalid @enderror" name="prenom"
+                                                value="{{ old('prenom') }}" required autocomplete="prenom"
+                                                placeholder="Saisir votre prenom">
+                                            @error('prenom')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row m-0 w-100">
+                                <div class="col-md-6 col-sm-12 px-1">
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="feather icon-mail"></i></span>
@@ -53,8 +72,6 @@
                                             @enderror
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row m-0 w-100">
                                     <div class="col-md-6 col-sm-12 px-1">
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
@@ -72,7 +89,9 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-sm-12 px-1">
+                                </div>
+                                <div class="row m-0 w-100">
+                                <div class="col-md-6 col-sm-12 px-1">
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="feather icon-map-pin"></i></span>
@@ -88,6 +107,24 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    <div class="col-md-6 col-sm-12 px-1">
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="feather icon-image"></i></span>
+                                            </div>
+                                            <input id="photo" type="file"
+                                                class="form-control @error('photo') is-invalid @enderror"
+                                                placeholder="Saisir votre photo" autocomplete="photo" autofocus
+                                                name="photo" value="{{ old('photo') }}" required autocomplete="photo"
+                                                autofocus>
+                                            @error('photo')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                   
                                 </div>
                                 <div class="row m-0 w-100">
                                     <div class="col-md-6 col-sm-12 px-1">

@@ -14,6 +14,7 @@
 Route::get('/', function () {
     return view('auth.login');
 });
+Route::post('/','UserController@logout')->name('Logout');
 //choisir login 
 Route::get('/login', function () {
     return view('auth.login');
@@ -31,7 +32,9 @@ Route::get('/select-user', function () {
     return view('auth.choisir-user');
 })->name('select-user');
 Auth::routes();
-Route::post('/register/res-action', 'UserController@store')->name('ResActinStore');
+//Registration
+Route::post('/register/res-action', 'UserController@ResActionStore')->name('ResActionStore');
+Route::post('/register/res-domaine', 'UserController@ResDomaineStore')->name('ResDomaineStore');
 Route::get('/dashboard', 'UserController@index')->name('dashboard');
 //authentification
 Route::post('/auth','UserController@auth')->name('auth');

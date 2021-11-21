@@ -4,17 +4,18 @@
 
 <div class="  mt-5">
     <div class="row m-0 w-100">
-        <div class="col-xl-8 col-lg-10 col-md-10 col-sm-12 mx-auto">
+        <div class="col-xl-8 col-lg-12 col-sm-12  mx-auto">
             <div class="card border-0">
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-12  col-sm-12  d-md-block p-5">
                         <img src="{{ asset('images/auth-login.jpg')}}" alt="" class="img-fluid img-login border-1 ">
                     </div>
                     <div class="col-lg-6 col-md-12  col-sm-12">
-                        <div class="d-flex justify-content-around">
-                            <h2 class="text-purple">PAQ-DGSE</h2>
-                        </div>
+                    
                         <div class="card-body">
+                        <div class="d-flex justify-content-around">
+                            <h5 class="text-purple">PAQ-DGSE</h5>
+                        </div>
                             <h4 class="mb-3 f-w-400">Choisir un compte !</h4>
                             <div class="row m-0 w-100">
                                 <div class="col-12 p-0">

@@ -18,13 +18,15 @@
     <!-- Favicon icon -->
     <!-- <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon"> -->
     <!-- fontawesome icon -->
-    <link rel="stylesheet" href="{{ asset('fonts/fontawesome/css/fontawesome-all.min.css') }}">
+    
     <!-- animation css -->
     <link rel="stylesheet" href="{{ asset('plugins/animation/css/animate.min.css') }}">
     <!-- vendor css -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  
 </head>
 
 <body>
@@ -204,121 +206,30 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
+                    
                     <li>
-                        <div class="dropdown">
-                            <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i
-                                    class="icon feather icon-bell"></i></a>
-                            <div class="dropdown-menu dropdown-menu-right notification">
-                                <div class="noti-head">
-                                    <h6 class="d-inline-block m-b-0">Notifications</h6>
-                                    <div class="float-right">
-                                        <a href="#!" class="m-r-10">mark as read</a>
-                                        <a href="#!">clear all</a>
-                                    </div>
-                                </div>
-                                <ul class="noti-body">
-                                    <li class="n-title">
-                                        <p class="m-b-0">NEW</p>
-                                    </li>
-                                    <li class="notification">
-                                        <div class="media">
-                                            <img class="img-radius" src="../assets/images/user/avatar-1.jpg"
-                                                alt="Generic placeholder image">
-                                            <div class="media-body">
-                                                <p><strong>John Doe</strong><span class="n-time text-muted"><i
-                                                            class="icon feather icon-clock m-r-10"></i>5 min</span></p>
-                                                <p>New ticket Added</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="n-title">
-                                        <p class="m-b-0">EARLIER</p>
-                                    </li>
-                                    <li class="notification">
-                                        <div class="media">
-                                            <img class="img-radius" src="../assets/images/user/avatar-2.jpg"
-                                                alt="Generic placeholder image">
-                                            <div class="media-body">
-                                                <p><strong>Joseph William</strong><span class="n-time text-muted"><i
-                                                            class="icon feather icon-clock m-r-10"></i>10 min</span></p>
-                                                <p>Prchace New Theme and make payment</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="notification">
-                                        <div class="media">
-                                            <img class="img-radius" src="../assets/images/user/avatar-3.jpg"
-                                                alt="Generic placeholder image">
-                                            <div class="media-body">
-                                                <p><strong>Sara Soudein</strong><span class="n-time text-muted"><i
-                                                            class="icon feather icon-clock m-r-10"></i>12 min</span></p>
-                                                <p>currently login</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="notification">
-                                        <div class="media">
-                                            <img class="img-radius" src="../assets/images/user/avatar-1.jpg"
-                                                alt="Generic placeholder image">
-                                            <div class="media-body">
-                                                <p><strong>Joseph William</strong><span class="n-time text-muted"><i
-                                                            class="icon feather icon-clock m-r-10"></i>30 min</span></p>
-                                                <p>Prchace New Theme and make payment</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="notification">
-                                        <div class="media">
-                                            <img class="img-radius" src="../assets/images/user/avatar-3.jpg"
-                                                alt="Generic placeholder image">
-                                            <div class="media-body">
-                                                <p><strong>Sara Soudein</strong><span class="n-time text-muted"><i
-                                                            class="icon feather icon-clock m-r-10"></i>1 hour</span></p>
-                                                <p>currently login</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="notification">
-                                        <div class="media">
-                                            <img class="img-radius" src="../assets/images/user/avatar-1.jpg"
-                                                alt="Generic placeholder image">
-                                            <div class="media-body">
-                                                <p><strong>Joseph William</strong><span class="n-time text-muted"><i
-                                                            class="icon feather icon-clock m-r-10"></i>2 hour</span></p>
-                                                <p>Prchace New Theme and make payment</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <div class="noti-footer">
-                                    <a href="#!">show all</a>
-                                </div>
+                        <div class="dropdown drp-user ">
+                            <div href="#" class="dropdown-toggle avatar" data-toggle="dropdown">
+                                
+                                <img src="{{ URL::to('images/photos/'.Auth::User()->photo) }}" class="img-radius" >
+                               
                             </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="dropdown drp-user">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="icon feather icon-settings"></i>
-                            </a>
                             <div class="dropdown-menu dropdown-menu-right profile-notification">
-                                <div class="pro-head">
-                                    <img src="../assets/images/user/avatar-1.jpg" class="img-radius"
-                                        alt="User-Profile-Image">
-                                    <span>{{ Auth::user()->nom }}</span>
-                                    <a href="auth-signin.html" class="dud-logout" title="Logout">
-                                        <i class="feather icon-log-out"></i>
-                                    </a>
+                                <div class="pro-head d-flex align-items-center">
+                                    <div class="avatar-menu">
+                                <img src="{{ URL::to('images/photos/'.Auth::User()->photo) }}" class="img-radius"
+                                       >
+                                       </div>
+                                    <span class="pl-3 text-capitalise">{{ Auth::user()->nom }} {{ Auth::user()->prenom }}</span>
+                                   
                                 </div>
                                 <ul class="pro-body">
-                                    <li><a href="#!" class="dropdown-item"><i class="feather icon-settings"></i>
-                                            Settings</a></li>
+                                    
                                     <li><a href="#!" class="dropdown-item"><i class="feather icon-user"></i> Profile</a>
                                     </li>
-                                    <li><a href="message.html" class="dropdown-item"><i class="feather icon-mail"></i>
-                                            My Messages</a></li>
-                                    <li><a href="auth-signin.html" class="dropdown-item"><i
-                                                class="feather icon-lock"></i> Lock Screen</a></li>
+                                    
+                                    <li><a href=" {{ route('Logout') }}" class="dropdown-item"><i
+                                                class="fal fa-sign-out"></i> Déconnexion</a></li>
                                 </ul>
                             </div>
                         </div>
