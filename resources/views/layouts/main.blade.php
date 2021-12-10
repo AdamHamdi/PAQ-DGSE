@@ -1,23 +1,14 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html >
 
 <head>
 
     <title>PAQ-DGSE</title>
-    <!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 11]>
-		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-		<![endif]-->
-    <!-- Meta -->
+   
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    
-    <!-- Favicon icon -->
-    <!-- <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon"> -->
-    <!-- fontawesome icon -->
+     <!-- fontawesome icon  -->
     
     <!-- animation css -->
     <link rel="stylesheet" href="{{ asset('plugins/animation/css/animate.min.css') }}">
@@ -98,15 +89,14 @@
                         <li class="nav-item">
                             <a href="index.html" class="nav-link"><span class="pcoded-micon"><i
                                         class="feather icon-home"></i></span><span
-                                    class="pcoded-mtext">Dashboard</span></a>
+                                    class="font-weight-700">Dashboard</span></a>
                         </li>
                         <li class="nav-item pcoded-menu-caption">
-                            <label>UI Element</label>
+                          <span> UI Element</span>
                         </li>
                         <li class="nav-item pcoded-hasmenu">
-                            <a href="#!" class="nav-link"><span class="pcoded-micon"><i
-                                        class="feather icon-box"></i></span><span
-                                    class="pcoded-mtext">Componant</span></a>
+                            <a href="#!" class="nav-link"><span class="pcoded-micon"><i class="fal fa-calendar-alt  "></i> </span><span
+                                    class="pcoded-mtext">Rendez-vous</span></a>
                             <ul class="pcoded-submenu">
                                 <li class=""><a href="bc_button.html" class="">Button</a></li>
                                 <li class=""><a href="bc_badges.html" class="">Badges</a></li>
@@ -155,22 +145,9 @@
                                 <li class=""><a href="auth-signin.html" class="" target="_blank">Sign in</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a href="sample-page.html" class="nav-link"><span class="pcoded-micon"><i
-                                        class="feather icon-sidebar"></i></span><span class="pcoded-mtext">Sample
-                                    page</span></a></li>
-                        <li class="nav-item disabled"><a href="#!" class="nav-link"><span class="pcoded-micon"><i
-                                        class="feather icon-power"></i></span><span class="pcoded-mtext">Disabled
-                                    menu</span></a></li>
+                        
                     </ul>
-                    <div class="card text-center">
-                        <div class="card-block">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <i class="feather icon-sunset f-40"></i>
-                            <h6 class="mt-3">Upgrade to pro</h6>
-                            <p>upgrade for get full themes and 30min support</p>
-
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </nav>
@@ -225,7 +202,7 @@
                                 </div>
                                 <ul class="pro-body">
                                     
-                                    <li><a href="#!" class="dropdown-item"><i class="feather icon-user"></i> Profile</a>
+                                    <li><a href="#!" class="dropdown-item"><i class="feather icon-user"></i> Profil</a>
                                     </li>
                                     
                                     <li><a href=" {{ route('Logout') }}" class="dropdown-item"><i

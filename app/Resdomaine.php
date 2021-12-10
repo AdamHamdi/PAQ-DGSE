@@ -11,4 +11,10 @@ class Resdomaine extends Model
     public function user(){
         return $this->belongsTo('App\User');
     }
+    public function domaines(){
+        return $this->hasMany('App\Domaine');
+    }
+    public function reunions(){
+        return $this->hasMany('App\Reunion');
+    }
 }

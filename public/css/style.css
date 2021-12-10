@@ -2100,7 +2100,7 @@ pre[class*="language-"]:before {
 }
 
 .pcoded-header .navbar-nav > li:last-child {
-    padding-right: 40px;
+    /* padding-right: 40px; */
 }
 
 .pcoded-header .mr-auto .dropdown-menu {
@@ -2198,8 +2198,8 @@ pre[class*="language-"]:before {
     display: flex!important;
     align-items: center!important;
     justify-content: center!important;
-    width: 50px!important;
-    height: 50px!important;
+    width: 40px!important;
+    height: 40px!important;
 }
 .avatar img,.avatar-menu img{    
     width: 100%;
