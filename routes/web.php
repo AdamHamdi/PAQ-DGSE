@@ -38,3 +38,9 @@ Route::post('/register/res-domaine', 'UserController@ResDomaineStore')->name('Re
 Route::get('/dashboard', 'UserController@index')->name('dashboard');
 //authentification
 Route::post('/auth','UserController@auth')->name('auth');
+// --------------------------- Rendez-vous----------------------
+Route::get('/rendez-vous', 'RendezVousController@index')->name('rendez-vous');
+Route::post('/rendez-vous/ajouter', 'RendezVousController@Store')->name('rendez-vous-store');
+Route::delete('rendez-vous/{id}', 'RendezVousController@delete')->name('rendez-vous-delete');
+Route::get('rendez-vous/{id}/edit', 'RendezVousController@edit')->name('rendez-vous-edit');
+Route::put('rendez-vous/{id}/update', 'RendezVousController@update')->name('rendez-vous-update');

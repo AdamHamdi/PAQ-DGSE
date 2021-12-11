@@ -15,8 +15,8 @@ class CreateRendezVousesTable extends Migration
     {
         Schema::create('rendez_vouses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->biginteger('admin_id')->unsigned();
-            $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
+            $table->biginteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->date('date');
             $table->string('status');
             $table->timestamps();

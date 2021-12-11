@@ -22,7 +22,15 @@ File: style.css
       Custom css start
 ==========================  **/
 body {
-    font-family: "Mada", sans-serif;
+    font-family: "fantasy", sans-serif!important;
+    /* font-family:monospace sans-serif;
+font-family: monospace;
+font-family: cursive;
+font-family: fantasy;
+font-family: system-ui;
+font-family: emoji;
+font-family: math;
+font-family: fangsong; */
     font-size: 14px;
     color: #686c71;
     font-weight: 400;
@@ -158,9 +166,7 @@ font-weight: bold;}
     font-weight: 400;
 }
 
-.pcoded-main-container .page-header {
-    margin-bottom: 30px;
-}
+
 
 /* ==========  card css start  =========== */
 .anim-rotate {
@@ -2605,7 +2611,7 @@ pre[class*="language-"]:before {
 }
 
 .pcoded-navbar .pcoded-inner-navbar li.pcoded-hasmenu > a:after {
-    content: "\e844";
+    /* content: "\e844"; */
     font-family: "feather";
     font-size: 13px;
     border: none;
@@ -3062,7 +3068,7 @@ pre[class*="language-"]:before {
 .pcoded-content {
     position: relative;
     display: block;
-    padding: 25px;
+    padding: 0 25px;
 }
 
 .pcoded-main-container {
@@ -5625,7 +5631,7 @@ body.layout-1 .pcoded-navbar.active-dark .sidemenu li.active:after {
 }
 
 .pcoded-header.headerpos-fixed ~ .pcoded-main-container {
-    padding-top: 50px !important;
+    padding-top: 20px !important;
 }
 
 @media only screen and (max-width: 991px) {
@@ -7836,8 +7842,8 @@ select.form-control-lg:not([size]):not([multiple]) {
 .table thead th {
     border-bottom: 1px solid #e2e5e8;
     font-size: 13px;
-    color: #111;
-    background: #eff3f6;
+    /* color: #111;
+    background: #eff3f6; */
     text-transform: uppercase;
 }
 

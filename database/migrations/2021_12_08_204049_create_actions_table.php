@@ -18,8 +18,8 @@ class CreateActionsTable extends Migration
             $table->string('nom_act');
             $table->date('date_debut');
             $table->date('date_fin');
-            $table->biginteger('res_action_id')->unsigned();
-            $table->foreign('res_action_id')->references('id')->on('res_actions')->onDelete('cascade');
+            $table->biginteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->biginteger('domaine_id')->unsigned();
             $table->foreign('domaine_id')->references('id')->on('domaines')->onDelete('cascade');
              $table->timestamps();

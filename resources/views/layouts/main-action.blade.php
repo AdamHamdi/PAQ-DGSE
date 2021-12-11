@@ -183,7 +183,7 @@
                                 <img src="{{ URL::to('images/photos/'.Auth::User()->photo) }}" class="img-radius">
 
                             </div>
-                            <div class="dropdown-menu dropdown-menu-right profile-notification shadow">
+                            <div class="dropdown-menu dropdown-menu-right profile-notification">
                                 <div class="pro-head d-flex align-items-center">
                                     <div class="avatar-menu">
                                         <img src="{{ URL::to('images/photos/'.Auth::User()->photo) }}"

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Domaine extends Model
 {
-    public function Resdomaine(){
+    public function user(){
         return $this->belongsTo('App\User');
     }
 
