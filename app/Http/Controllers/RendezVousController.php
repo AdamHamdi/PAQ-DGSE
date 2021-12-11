@@ -7,7 +7,7 @@ use App\Rendez_vous;
 class RendezVousController extends Controller
 {
     public function index(){
-        $rendez_vous=Rendez_vous::paginate(9);
+        $rendez_vous=Rendez_vous::orderBy('created_at', 'ASC')->paginate(9);
         // dd($rendez_vous);
         return view('admin.rendez_vous',['r'=> $rendez_vous]);
      
