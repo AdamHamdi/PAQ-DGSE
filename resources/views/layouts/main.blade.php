@@ -93,7 +93,11 @@
                                         class="feather icon-home"></i></span><span
                                     class="font-weight-700">Dashboard</span></a>
                         </li>
-                       
+                        <li class="nav-item">
+                            <a href="{{ route('actions')}}" class="nav-link"><span class="pcoded-micon"><i
+                                        class="feather icon-home"></i></span><span
+                                    class="font-weight-700">Actions</span></a>
+                        </li>
                         <li class="nav-item pcoded-hasmenu">
                             <a href="{{ route('rendez-vous')}}" class="nav-link"><span class="pcoded-micon"><i
                                         class="fal fa-calendar-alt  "></i> </span><span

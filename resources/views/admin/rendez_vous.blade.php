@@ -13,7 +13,7 @@
 <div class="row w-100 m-0 mt-4">
 
     <div class="col-12 col-md-12 col-lg-3 px-2">
-       
+
         <!-- @if(Route::is('rendez-vous') ) -->
         <div class="card shadow">
             <div class="p-2 bg-primary">
@@ -22,15 +22,27 @@
             <div class="card-body">
                 <form action="{{route('rendez-vous-store')}}" method="post">
                     @csrf
+                    
                     <div class="form-group">
                         <label for="date">Date de rendez-vous :</label>
-                        <input type="date" name="date" class="form-control">
+                        <input type="date" name="date" class="form-control" required>
+                        @if($errors->get('date'))
+                        @foreach($errors->get('date') as
+                        $message)
+                        <label style="color:red">{{ $message }}</label>
+                        @endforeach @endif
                     </div>
                     <div class="form-group">
-                        <input type="hidden" name="status" value="affecter" class="form-control">
+                        <input type="hidden" name="status" value="affecter" class="form-control" required>
+                        @if($errors->get('status'))
+                        @foreach($errors->get('status') as
+                        $message)
+                        <label style="color:red">{{ $message }}</label>
+                        @endforeach @endif
                     </div>
                     <div class="form-group">
                         <button class="btn btn-success">Valider</button>
+                        <button class="btn btn-secondary" type="reset">Annuler</button>
                     </div>
                 </form>
             </div>
@@ -74,7 +86,7 @@
 
                 </div>
                 @if($r)
-                    <div  class="float-right mr-4">{{ $r->links() }}</div>
+                <div class="float-right mr-4">{{ $r->links() }}</div>
                 @endif
             </div>
         </div>

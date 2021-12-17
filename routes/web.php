@@ -38,9 +38,22 @@ Route::post('/register/res-domaine', 'UserController@ResDomaineStore')->name('Re
 Route::get('/dashboard', 'UserController@index')->name('dashboard');
 //authentification
 Route::post('/auth','UserController@auth')->name('auth');
+Route::group(['middleware' => 'auth'], function()
+{
 // --------------------------- Rendez-vous----------------------
 Route::get('/rendez-vous', 'RendezVousController@index')->name('rendez-vous');
 Route::post('/rendez-vous/ajouter', 'RendezVousController@Store')->name('rendez-vous-store');
 Route::delete('rendez-vous/{id}', 'RendezVousController@delete')->name('rendez-vous-delete');
 Route::get('rendez-vous/{id}/edit', 'RendezVousController@edit')->name('rendez-vous-edit');
 Route::put('rendez-vous/{id}/update', 'RendezVousController@update')->name('rendez-vous-update');
+//-----------------------------------Actions---------------------------
+
+Route::get('/actions', 'ActionController@index')->name('actions');
+Route::post('/action/ajouter', 'ActionController@Store')->name('actions-store');
+Route::delete('action/{id}', 'ActionController@delete')->name('Action-delete');
+Route::get('action/{id}/detail', 'ActionController@detail')->name('Action-detail');
+Route::get('action/{id}/edit', 'ActionController@edit')->name('Action-edit');
+Route::put('action/{id}/update', 'ActionController@update')->name('Action-update');
+
+
+});

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Rendez_vous;
+use Illuminate\Support\Facades\Validator;
 class RendezVousController extends Controller
 {
     public function index(){
@@ -17,11 +18,7 @@ class RendezVousController extends Controller
     public function Store(Request $request)
     {
        //
-       $this->validate($request,[
-        'date'=> 'required',
-        
-
-    ]);
+      
         $rend=new Rendez_vous();
         $rend->status=$request->status;
         $rend->user_id = auth()->user()->id;

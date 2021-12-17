@@ -19,8 +19,8 @@ class CreateProductsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('quantite');
             $table->float('prix');
-            $table->date('datedebut');
-            $table->date('datefin');
+            $table->date('date_debut');
+            $table->date('date_fin');
 
             $table->timestamps();
         });

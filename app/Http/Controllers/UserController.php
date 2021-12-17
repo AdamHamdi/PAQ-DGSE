@@ -22,9 +22,9 @@ class UserController extends Controller
         request()->validate([
 
             'password' => 'required| min:8',
-            'nom'=>'required|min:2|max:255',
-            'prenom'=>'required|min:2|max:255',
-            'adresse'=>'required',
+            'nom'=>'required|min:2|max:255| regex:/^([a-zA-Z]+)(\s[a-zA-Z]+)*$/',
+            'prenom'=>'required|min:2|max:255| regex:/^([a-zA-Z]+)(\s[a-zA-Z]+)*$/',
+            'adresse'=>'required | regex:/^([a-zA-Z]+)(\s[a-zA-Z]+)*$/',
             'tel'=>'required|min:8|numeric',
             'photo'=>'required'
             ]);
@@ -63,11 +63,12 @@ class UserController extends Controller
         request()->validate([
 
             'password' => 'required| min:8',
-            'nom'=>'required|min:2|max:255',
-            'prenom'=>'required|min:2|max:255',
-            'adresse'=>'required',
+            'nom'=>'required|min:2|max:255| regex:/^([a-zA-Z]+)(\s[a-zA-Z]+)*$/',
+            'prenom'=>'required|min:2|max:255| regex:/^([a-zA-Z]+)(\s[a-zA-Z]+)*$/',
+            'adresse'=>'required | regex:/^([a-zA-Z]+)(\s[a-zA-Z]+)*$/',
             'tel'=>'required|min:8|numeric',
-            'photo'=>'required'
+            'photo'=>'required',
+            'email.required' => 'We need to know your e-mail address!',
             ]);
            
            
