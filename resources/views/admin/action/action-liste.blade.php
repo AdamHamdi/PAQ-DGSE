@@ -57,7 +57,7 @@
     @endif
     @if(Route::is('Action-detail') )
     <div class="col-12 col-sm-12 col-md-3 px-2">
-        <div class="card">
+        <div class="card" style="width:fit-content">
 
             @if($action)
             <div class="px-3  py-2 bg-primary">
