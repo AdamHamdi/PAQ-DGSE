@@ -12,7 +12,7 @@ class Action extends Model
     public function domaine(){
         return $this->belongsTo('App\Domaine');
     }
-    public function budget(){
-        return $this->hasOne('App\Budget');
+    public function produits(){
+        return $this->hasMany('App\Product');
     }
 }

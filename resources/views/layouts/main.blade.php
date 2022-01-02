@@ -50,23 +50,7 @@
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                         @endif
-                        @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                    style="display: none;">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
+                       
                         @endguest
                     </ul>
                 </div>
@@ -77,7 +61,7 @@
         <nav class="pcoded-navbar menupos-fixed menu-light brand-blue ">
             <div class="navbar-wrapper ">
                 <div class="navbar-brand header-logo">
-                    <a href="index.html" class="b-brand text-white">
+                    <a  class="b-brand text-white">
                         PAQ-DGSE
 
                     </a>
@@ -85,62 +69,45 @@
                 </div>
                 <div class="navbar-content scroll-div">
                     <ul class="nav pcoded-inner-navbar">
-                        <li class="nav-item pcoded-menu-caption">
-                            <label>Navigation</label>
-                        </li>
+                      
                         <li class="nav-item">
-                            <a href="index.html" class="nav-link"><span class="pcoded-micon"><i
-                                        class="feather icon-home"></i></span><span
+                            <a href="#" class="nav-link"><span class="pcoded-micon"><i
+                                        class="fal fa-home"></i></span><span
                                     class="font-weight-700">Dashboard</span></a>
                         </li>
+                        @if( (Auth::user()->role =='responsable domaine') || (Auth::user()->role =='admin'))
+                        <li class="nav-item">
+                          
+                            <a href="{{ route('domaines')}}" class="nav-link"><span class="pcoded-micon"><i class="fal fa-columns  "></i></span><span
+                                    class="font-weight-700">Domaines</span></a>
+                        </li>
+                        @endif
+                       
                         <li class="nav-item">
                             <a href="{{ route('actions')}}" class="nav-link"><span class="pcoded-micon"><i
                                         class="feather icon-home"></i></span><span
                                     class="font-weight-700">Actions</span></a>
                         </li>
+                        @if (Auth::user()->role =='admin')
                         <li class="nav-item pcoded-hasmenu">
-                            <a href="{{ route('rendez-vous')}}" class="nav-link"><span class="pcoded-micon"><i
-                                        class="fal fa-calendar-alt  "></i> </span><span
+                            <a href="{{ route('rendez-vous')}}" class="nav-link"><span class="pcoded-micon"><i class="fal fa-calendar-alt  "></i> </span>
+                            <span
                                     class="pcoded-mtext">Rendez-vous</span></a>
-                            
+
                         </li>
-                        <li class="nav-item pcoded-menu-caption">
-                            <label>Forms &amp; table</label>
-                        </li>
-                        <li class="nav-item">
-                            <a href="form_elements.html" class="nav-link"><span class="pcoded-micon"><i
-                                        class="feather icon-file-text"></i></span><span class="pcoded-mtext">Form
-                                    elements</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="tbl_bootstrap.html" class="nav-link"><span class="pcoded-micon"><i
-                                        class="feather icon-align-justify"></i></span><span
-                                    class="pcoded-mtext">Bootstrap table</span></a>
-                        </li>
-                        <li class="nav-item pcoded-menu-caption">
-                            <label>Chart & Maps</label>
-                        </li>
-                        <li class="nav-item">
-                            <a href="chart-morris.html" class="nav-link"><span class="pcoded-micon"><i
-                                        class="feather icon-pie-chart"></i></span><span
-                                    class="pcoded-mtext">Chart</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="map-google.html" class="nav-link"><span class="pcoded-micon"><i
-                                        class="feather icon-map"></i></span><span class="pcoded-mtext">Maps</span></a>
-                        </li>
-                        <li class="nav-item pcoded-menu-caption">
-                            <label>Pages</label>
+                        @endif
+                        <li class="nav-item pcoded-hasmenu">
+                            <a href="{{ route('cahier-charge')}}" class="nav-link"><span class="pcoded-micon"><i
+                                        class="fad fa-books "></i> </span><span class="pcoded-mtext">Cahier de
+                                    charge</span></a>
+
                         </li>
                         <li class="nav-item pcoded-hasmenu">
-                            <a href="#!" class="nav-link"><span class="pcoded-micon"><i
-                                        class="feather icon-lock"></i></span><span
-                                    class="pcoded-mtext">Authentication</span></a>
-                            <ul class="pcoded-submenu">
-                                <li class=""><a href="auth-signup.html" class="" target="_blank">Sign up</a></li>
-                                <li class=""><a href="auth-signin.html" class="" target="_blank">Sign in</a></li>
-                            </ul>
+                            <a href="{{ route('produits')}}" class="nav-link"><span class="pcoded-micon"><i class="fal fa-file-spreadsheet"></i> </span><span class="pcoded-mtext">Produits</span></a>
+
                         </li>
+                      
+                       
 
                     </ul>
 
@@ -165,7 +132,7 @@
                 <a href="#!" class="mob-toggler"></a>
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <div class="main-search open">
+                        <!-- <div class="main-search open">
                             <div class="input-group">
                                 <input type="text" id="m-search" class="form-control" placeholder="Search . . .">
                                 <a href="#!" class="input-group-append search-close">
@@ -175,7 +142,7 @@
                                     <i class="feather icon-search input-group-text"></i>
                                 </span>
                             </div>
-                        </div>
+                        </div> -->
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
@@ -193,17 +160,22 @@
                                         <img src="{{ URL::to('images/photos/'.Auth::User()->photo) }}"
                                             class="img-radius">
                                     </div>
-                                    <span class="pl-3 text-capitalise">{{ Auth::user()->nom }}
-                                        {{ Auth::user()->prenom }}</span>
+                                    <div class="d-flex flex-column">
+                                    <div class="pl-3 text-capitalise" style="height:20px">{{ Auth::user()->nom }}
+                                        {{ Auth::user()->prenom }}</div>
+                                        <small class="pl-3 text-light" >{{ Auth::user()->email }}
+                                        </small>
+                                        </div>
 
                                 </div>
                                 <ul class="pro-body">
 
-                                    <li><a href="#!" class="dropdown-item"><i class="feather icon-user"></i> Profil</a>
+                                    <li class="border-bottom"><a href="{{route('profil')}}" class="dropdown-item"><i class="feather icon-user text-success"></i> Profil</a>
                                     </li>
+                                   
 
                                     <li><a href=" {{ route('Logout') }}" class="dropdown-item"><i
-                                                class="fal fa-sign-out"></i> Déconnexion</a></li>
+                                                class="fal fa-sign-out text-danger"></i> Déconnexion</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -218,25 +190,25 @@
                         <div class="main-body">
                             <div class="page-wrapper">
                                 <!-- [ breadcrumb ] start -->
-                              
+
                                 <!-- [ breadcrumb ] end -->
                                 <!-- [ Main Content ] start -->
                                 @if(Session::has('danger'))
-                                    <div class="alert alert-danger">
-                                        {{ Session::get('danger') }} @php Session::forget('danger'); @endphp
-                                    </div>
-                                    @endif @if(Session::has('warning'))
-                                    <div class="alert alert-warning">
-                                        {{ Session::get('warning') }} @php Session::forget('warning'); @endphp
-                                    </div>
-                                    @endif @if(Session::has('success'))
-                                    <div class="alert alert-success">
-                                        {{ Session::get('success') }} @php Session::forget('success'); @endphp
-                                    </div>
-                                    @endif
+                                <div class="alert alert-danger">
+                                    {{ Session::get('danger') }} @php Session::forget('danger'); @endphp
+                                </div>
+                                @endif @if(Session::has('warning'))
+                                <div class="alert alert-warning">
+                                    {{ Session::get('warning') }} @php Session::forget('warning'); @endphp
+                                </div>
+                                @endif @if(Session::has('success'))
+                                <div class="alert alert-success">
+                                    {{ Session::get('success') }} @php Session::forget('success'); @endphp
+                                </div>
+                                @endif
                                 <main class="">
                                     @yield('content')
-                                   
+
                                 </main>
 
                                 <!-- [ Main Content ] end -->

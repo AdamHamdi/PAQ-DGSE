@@ -54,6 +54,31 @@ Route::delete('action/{id}', 'ActionController@delete')->name('Action-delete');
 Route::get('action/{id}/detail', 'ActionController@detail')->name('Action-detail');
 Route::get('action/{id}/edit', 'ActionController@edit')->name('Action-edit');
 Route::put('action/{id}/update', 'ActionController@update')->name('Action-update');
+/**---------------------------------- cahier de charge -------------------------------------------- */
+Route::get('/cahier-charge', 'CahierChargeController@index')->name('cahier-charge');
+Route::post('/cahier-charge/ajouter', 'CahierChargeController@Store')->name('cahier-charge-store');
+Route::delete('cahier-charge/{id}', 'CahierChargeController@delete')->name('cahier-charge-delete');
+Route::get('cahier-charge/{id}/detail', 'CahierChargeController@detail')->name('cahier-charge-detail');
+Route::get('cahier-charge/{id}/edit', 'CahierChargeController@edit')->name('cahier-charge-edit');
+Route::put('cahier-charge/{id}/update', 'CahierChargeController@update')->name('cahier-charge-update');
+/**------------------------------------Produits-------------------------------- */
+Route::get('/produits', 'ProductController@index')->name('produits');
+Route::post('/produits/ajouter', 'ProductController@Store')->name('produits-store');
+Route::delete('produits/{id}', 'ProductController@delete')->name('produits-delete');
+Route::get('produits/{id}/detail', 'ProductController@detail')->name('produits-detail');
+Route::get('produits/{id}/edit', 'ProductController@edit')->name('produits-edit');
+Route::put('produits/{id}/update', 'ProductController@update')->name('produits-update');
+/**------------------------------------Domaines-------------------------------- */
+Route::get('/domaines', 'DomaineController@index')->name('domaines');
+Route::post('/domaines/ajouter', 'DomaineController@Store')->name('domaines-store');
+Route::delete('domaines/{id}', 'DomaineController@delete')->name('domaines-delete');
+Route::get('domaines/{id}/detail', 'DomaineController@detail')->name('domaines-detail');
+Route::get('domaines/{id}/edit', 'DomaineController@edit')->name('domaines-edit');
+Route::put('domaines/{id}/update', 'DomaineController@update')->name('domaines-update');
+
+/**------------------------------------Profil-------------------------------- */
+Route::get('/profil', 'AdminController@profil')->name('profil');
+Route::put('profil/{id}/update', 'AdminController@update')->name('update-profil');
 
 
 });

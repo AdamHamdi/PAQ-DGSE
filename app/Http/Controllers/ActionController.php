@@ -26,7 +26,7 @@ class ActionController extends Controller
             $action->user_id = auth()->user()->id;
             $action->date_debut=$request->date_debut;
             $action->date_fin=$request->date_fin;
-           
+            $action->budget=$request->budget;
             $action->save();
      
             return redirect()->back()->with('success',"L'action a été ajoutée avec succès");
@@ -51,7 +51,7 @@ class ActionController extends Controller
             $action->user_id = auth()->user()->id;
             $action->date_debut=$request->date_debut;
             $action->date_fin=$request->date_fin;
-        
+            $action->budget=$request->budget;
             $action->save();
     
             return redirect()->route('actions')->with('success',"L'action a été modifiée avec succès");

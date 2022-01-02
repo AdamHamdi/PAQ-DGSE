@@ -18,7 +18,7 @@
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
                     <div class="row m-0 w-100">
-                        <div class="col-12 col-sm-6 ">
+                        <div class="col-12 col-sm-4 ">
                             <div class="form-group">
                                 <label>Action <span class="text-danger">*</span> :</label>
                                 <input class="form-control" type="text" name="nom_act" value="{{$acti->nom_act}}"
@@ -30,7 +30,7 @@
                                 @endforeach @endif
                             </div>
                         </div>
-                        <div class="col-12 col-sm-6 ">
+                        <div class="col-12 col-sm-4 ">
                             <div class="form-group">
                                 <label>Domaine <span class="text-danger">*</span> :</label>
                                 <select name="domaine_id" class="form-control" required>
@@ -38,6 +38,18 @@
                                     <option value="{{ $do->id}}">{{ $do->nom_domaine}}</option>
                                     @endforeach
                                 </select>
+                                @if($errors->get('domaine_id'))
+                                @foreach($errors->get('domaine_id') as
+                                $message)
+                                <label style="color:red">{{ $message }}</label>
+                                @endforeach @endif
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-4 ">
+                            <div class="form-group">
+                                <label>Budget <span class="text-danger">*</span> :</label>
+                                <input class="form-control" type="number" name="budget" value="{{$acti->budget}}"
+                                    required>
                                 @if($errors->get('domaine_id'))
                                 @foreach($errors->get('domaine_id') as
                                 $message)
@@ -76,6 +88,7 @@
                         <div class="col-12  ">
                             <div class="form-group">
                                 <button class="btn btn-success">Valider</button>
+                                <a href="{{ url()->previous() }}" class="btn btn-secondary" type="reset" data-dismiss="modal">Annuler</a>
                             </div>
                         </div>
                     </div>
