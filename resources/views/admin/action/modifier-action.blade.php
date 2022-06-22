@@ -59,7 +59,7 @@
                         </div>
                     </div>
                     <div class="row m-0 w-100">
-                        <div class="col-12 col-sm-6 ">
+                        <div class="col-12 col-sm-4 ">
                             <div class="form-group">
                                 <label>Date de début<span class="text-danger">*</span> :</label>
                                 <input class="form-control" type="date" name="date_debut" value="{{$acti->date_debut}}"
@@ -71,13 +71,26 @@
                                 @endforeach @endif
                             </div>
                         </div>
-                        <div class="col-12 col-sm-6 ">
+                        <div class="col-12 col-sm-4 ">
                             <div class="form-group">
                                 <label>Date de fin <span class="text-danger">*</span> :</label>
                                 <input class="form-control" type="date" name="date_fin" value="{{$acti->date_fin}}"
                                     required>
                                 @if($errors->get('date_fin'))
                                 @foreach($errors->get('date_fin') as
+                                $message)
+                                <label style="color:red">{{ $message }}</label>
+                                @endforeach @endif
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-4 ">
+                            <div class="form-group">
+                                <label>Status <span class="text-danger">*</span> :</label>
+                                <select class="form-control"   name="status" value="{{$acti->status}}"
+                                    required>
+                                    </select>
+                                @if($errors->get('status'))
+                                @foreach($errors->get('status') as
                                 $message)
                                 <label style="color:red">{{ $message }}</label>
                                 @endforeach @endif

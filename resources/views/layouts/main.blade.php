@@ -69,13 +69,27 @@
                 </div>
                 <div class="navbar-content scroll-div">
                     <ul class="nav pcoded-inner-navbar">
-                      
+                    @if(Auth::user()->role =='admin')
                         <li class="nav-item">
-                            <a href="#" class="nav-link"><span class="pcoded-micon"><i
+                            <a href="{{route('dashboard-admin')}}" class="nav-link"><span class="pcoded-micon"><i
                                         class="fal fa-home"></i></span><span
                                     class="font-weight-700">Dashboard</span></a>
                         </li>
-                        @if( (Auth::user()->role =='responsable domaine') || (Auth::user()->role =='admin'))
+                        @endif @if(Auth::user()->role =='responsable domaine')
+                        <li class="nav-item">
+                            <a href="{{route('dashboard-responsable-domaine')}}" class="nav-link"><span class="pcoded-micon"><i
+                                        class="feather icon-home"></i></span><span
+                                    class="font-weight-700">Dashboard </span></a>
+                        </li>
+                        @endif 
+                        @if(Auth::user()->role =='responsable action')
+                        <li class="nav-item">
+                            <a href="{{route('dashboard-responsable-action')}}" class="nav-link"><span class="pcoded-micon"><i
+                                        class="feather icon-home"></i></span><span
+                                    class="font-weight-700">Dashboard </span></a>
+                        </li>
+                        @endif 
+                        @if(Auth::user()->role =='admin')
                         <li class="nav-item">
                           
                             <a href="{{ route('domaines')}}" class="nav-link"><span class="pcoded-micon"><i class="fal fa-columns  "></i></span><span
@@ -93,22 +107,23 @@
                             <a href="{{ route('rendez-vous')}}" class="nav-link"><span class="pcoded-micon"><i class="fal fa-calendar-alt  "></i> </span>
                             <span
                                     class="pcoded-mtext">Rendez-vous</span></a>
-
                         </li>
                         @endif
+                        @if ((Auth::user()->role =='responsable domaine') || (Auth::user()->role =='responsable domaine'))
                         <li class="nav-item pcoded-hasmenu">
                             <a href="{{ route('cahier-charge')}}" class="nav-link"><span class="pcoded-micon"><i
                                         class="fad fa-books "></i> </span><span class="pcoded-mtext">Cahier de
                                     charge</span></a>
-
                         </li>
+                        @endif
                         <li class="nav-item pcoded-hasmenu">
                             <a href="{{ route('produits')}}" class="nav-link"><span class="pcoded-micon"><i class="fal fa-file-spreadsheet"></i> </span><span class="pcoded-mtext">Produits</span></a>
-
                         </li>
-                      
-                       
-
+                        @if (Auth::user()->role =='admin')
+                        <li class="nav-item pcoded-hasmenu">
+                            <a href="{{ route('reunion')}}" class="nav-link"><span class="pcoded-micon"><i class="fal fa-calendar-alt "></i> </span><span class="pcoded-mtext">Réunions</span></a>
+                        </li>
+                        @endif
                     </ul>
 
                 </div>

@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Domaine extends Model
 {
-    public function user(){
-        return $this->belongsTo('App\User');
+    
+    public function resDomaines(){
+        return $this->hasMany('App\Resdomaine');
     }
-
     public function actions(){
         return $this->hasMany('App\Action');
     }

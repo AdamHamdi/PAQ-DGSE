@@ -155,6 +155,26 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row m-0 w-100">
+                                    <div class="col-md-6 col-sm-12 px-1">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fal fa-columns  "></i></span>
+                                            </div>
+                                            <select name="domaine_id" id="" class="form-control" required>
+                                                @foreach($d as $do)
+                                                <option value="{{ $do->id}}">{{ $do->nom_domaine}}</option>
+                                                @endforeach
+                                            </select>
+                                            @if($errors->get('domaine_id'))
+                                            @foreach($errors->get('domaine_id') as
+                                            $message)
+                                            <label style="color:red">{{ $message }}</label>
+                                            @endforeach @endif
+                                        </div>
+                                    </div>
+                                    
+                                </div>
                                 <div class="form-group row mb-0 pl-1">
                                     <div class="col-md-6 pl-3">
                                         <button type="submit" class="btn btn-primary">
@@ -162,6 +182,7 @@
                                         </button>
                                     </div>
                                 </div>
+                                
                             </form>
                             Vous avez déjà un compte?<a href="{{route('login')}}" class="btn-link"> Connexion</a>
                         </div>

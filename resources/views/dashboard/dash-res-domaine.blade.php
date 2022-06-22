@@ -6,7 +6,7 @@
         <h5 class="d-flex align-items-center text-underline">
         <span class="pcoded-micon"><i class="fal fa-home pr-2"></i></span>
             <span
-                class="text-secondary ">Dashboard Admin</span> </h5>
+                class="text-secondary ">Dashboard Responsable Domaine</span> </h5>
     </div>
 
 </div>
@@ -55,14 +55,12 @@ if ($d->nom_domaine === 'Gestion et governance') {
                 <div class="d-flex align-items-center flex-column text-center ">
                     <small class="text-white ">Action(s) en cours</small>
                     <h4 class="text-white font-weight-bold">
-                    {{  \App\Action::all()->where('status','en cours')->where($d->id, '=' ,$d->actions('domaine_id'))->count()  }}
                     </h4>
                 </div>
                 <div class="d-flex align-items-center flex-column text-center ">
                     <small class="text-white ">Action(s) en terminée(s)</small>
                     <h4 class="text-white font-weight-bold"> 
-                    {{ \App\Action::all()->where('status','termine')->where('domaines.id', '=' ,'actions.domaine_id')->count() }}
-                    
+                     
                 </h4>
                 </div>
             </div>

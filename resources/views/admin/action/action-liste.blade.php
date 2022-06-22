@@ -2,8 +2,7 @@
 @section('content')
 <div class="row w-100 m-0 mt-2">
     <div class="col-12 p-0">
-        <h5 class="d-flex align-items-center "><i
-                                        class="feather icon-home pr-2 text-secondary"></i><span
+        <h5 class="d-flex align-items-center "><i class="feather icon-home pr-2 text-secondary"></i><span
                 class="text-secondary ">Domaines</span> </h5>
     </div>
 
@@ -16,48 +15,56 @@
             <a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg">
                 <i class="fal fa-plus text-white"></i> Action</a>
         </div>
-<div class="table-overflow">
-        <table class="table  table-bordered ">
-            <thead class="bg-success text-white">
-                <tr>
-                    <td>A</td>
-                    <td>Date de début</td>
-                    <td>Date de fin</td>
-                    <td>Domaine</td>
-                    <td>Responsable</td>
-                    <td>Budget</td>
-                    <td>Actions</td>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($a as $ac)
-                <tr>
-                    <td> {{$ac->nom_act}}</td>
-                    <td>{{$ac->date_debut}}</td>
-                    <td>{{$ac->date_fin}}</td>
-                    <td>{{$ac->domaine->nom_domaine}}</td>
-                    <td>{{ Auth::user()->nom }} {{ Auth::user()->prenom }}</td>
-                    <td>{{ $ac->budget}} TND</td>
-                    <td>
-                        <form action="{{route('Action-delete',$ac->id)}}"
-                            onsubmit="return confirm('Voulez vous vraiment supprimer cette action ?');" method="post">
+        <div class="table-overflow">
+            <table class="table  table-bordered ">
+                <thead class="bg-success text-white">
+                    <tr>
+                        <td>A</td>
+                        <td>Date de début</td>
+                        <td>Date de fin</td>
+                        <td>Domaine</td>
+                        <td>Responsable</td>
+                        <td>Budget</td>
+                        <td>Actions</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($a as $ac)
+                  
+                    
+                    @if(($ac->user_id == auth()->user()->id)  )
+                    <tr>
+                        <td> {{$ac->nom_act}}</td>
+                        <td>{{$ac->date_debut}}</td>
+                        <td>{{$ac->date_fin}}</td>
+                        <td>{{$ac->domaine->nom_domaine}}</td>
+                        <td>{{ $ac->user->nom }} {{ $ac->user->prenom }}</td>
+                        <td>{{ $ac->budget}} TND</td>
+                        <td>
+                            <form action="{{route('Action-delete',$ac->id)}}"
+                                onsubmit="return confirm('Voulez vous vraiment supprimer cette action ?');"
+                                method="post">
 
-                            {{ csrf_field() }} {{ method_field('DELETE') }}
-                            <a href="{{route('Action-detail',$ac->id)}}" class="btn btn-sm bg-info text-white"><i
-                                    class="fal fa-info-circle m-0 "></i>
-                            </a>
-                            <a href="{{route('Action-edit',$ac->id)}}" class="btn btn-sm bg-warning text-white"><i
-                                    class="fal fa-edit m-0 "></i> </a>
-                            <button  class="btn btn-sm bg-danger text-white">
-                                <i class="fal fa-trash-alt m-0"></i>
-                            </button>
-
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+                                {{ csrf_field() }} {{ method_field('DELETE') }}
+                               
+                                <a href="{{route('Action-detail',$ac->id)}}" class="btn btn-sm bg-info text-white"><i
+                                        class="fal fa-info-circle m-0 "></i>
+                                </a>
+                                
+                                <a href="{{route('Action-edit',$ac->id)}}" class="btn btn-sm bg-warning text-white"><i
+                                        class="fal fa-edit m-0 "></i> </a>
+                                <button class="btn btn-sm bg-danger text-white">
+                                    <i class="fal fa-trash-alt m-0"></i>
+                                </button>
+                                
+                            </form>
+                        </td>
+                    </tr>
+                    @endif
+                   
+                    @endforeach
+                </tbody>
+            </table>
         </div>
         @if($a)
         <div class="float-right mr-4">{{ $a->links() }}</div>
@@ -177,7 +184,7 @@
                                         <div class="form-group">
                                             <label>Budget <span class="text-danger">*</span> :</label>
                                             <input class="form-control" type="number" name="budget" required>
-                                           
+
                                             @if($errors->get('domaine_id'))
                                             @foreach($errors->get('domaine_id') as
                                             $message)
@@ -187,7 +194,7 @@
                                     </div>
                                 </div>
                                 <div class="row m-0 w-100">
-                                    <div class="col-12 col-sm-6 ">
+                                    <div class="col-12 col-sm-4 ">
                                         <div class="form-group">
                                             <label>Date de début<span class="text-danger">*</span> :</label>
                                             <input class="form-control" type="date" name="date_debut" required>
@@ -198,12 +205,28 @@
                                             @endforeach @endif
                                         </div>
                                     </div>
-                                    <div class="col-12 col-sm-6 ">
+                                    <div class="col-12 col-sm-4 ">
                                         <div class="form-group">
                                             <label>Date de fin <span class="text-danger">*</span> :</label>
                                             <input class="form-control" type="date" name="date_fin" required>
                                             @if($errors->get('date_fin'))
                                             @foreach($errors->get('date_fin') as
+                                            $message)
+                                            <label style="color:red">{{ $message }}</label>
+                                            @endforeach @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4 ">
+                                        <div class="form-group">
+                                            <label>Status <span class="text-danger">*</span> :</label>
+                                            <select class="form-control" name="status"  
+                                                required>
+                                                <option value="en cours">En cours</option>
+                                                <option value="termine">Términée</option>
+                                                
+                                            </select>
+                                            @if($errors->get('status'))
+                                            @foreach($errors->get('status') as
                                             $message)
                                             <label style="color:red">{{ $message }}</label>
                                             @endforeach @endif

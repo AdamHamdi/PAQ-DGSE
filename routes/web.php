@@ -1,5 +1,5 @@
 <?php
-
+use App\Domaine;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,7 +25,8 @@ Route::get('/signup/responsable-action', function () {
 })->name('register-action');
 //choisir register responsable de domaine
 Route::get('/signup/responsable-domaine', function () {
-    return view('auth.register-res-domaine');
+    $domaine=Domaine::all();
+    return view('auth.register-res-domaine',['d'=>$domaine]);
 })->name('register-domaine');
 //choisir utilisateur 
 Route::get('/select-user', function () {
@@ -80,5 +81,17 @@ Route::put('domaines/{id}/update', 'DomaineController@update')->name('domaines-u
 Route::get('/profil', 'AdminController@profil')->name('profil');
 Route::put('profil/{id}/update', 'AdminController@update')->name('update-profil');
 
+// --------------------------- Reunion----------------------
+Route::get('/reunion', 'ReunionController@index')->name('reunion');
+Route::post('/reunion/ajouter', 'ReunionController@Store')->name('reunion-store');
+Route::delete('reunion/{id}', 'ReunionController@delete')->name('reunion-delete');
+Route::get('reunion/{id}/edit', 'ReunionController@edit')->name('reunion-edit');
+Route::put('reunion/{id}/update', 'ReunionController@update')->name('reunion-update');
+// --------------------------- Dashbord---------------------
+Route::get('/dashbord/admin', 'UserController@dashboard_admin')->name('dashboard-admin');
+Route::get('/dashbord/responsable-domaine', 'UserController@dashboard_responsable_domaine')->name('dashboard-responsable-domaine');
+Route::get('/dashbord/responsable-action', 'UserController@dashboard_responsable_action')->name('dashboard-responsable-action');
+  Route::get('/route', 'UserController@action')->name('route');
+ 
 
 });

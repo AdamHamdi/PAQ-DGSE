@@ -40,9 +40,12 @@ class User extends Authenticatable
         return $this->hasOne('App\Admin');
     }
     public function responsable_domaine(){
-        return $this->hasOne('App\Resdomaine');
+        return $this->hasMany('App\Resdomaine');
     }
     public function responsable_action(){
         return $this->hasOne('App\Resdomaine');
+    }
+    public function actions(){
+        return $this->hasMany('App\Action');
     }
 }

@@ -27,6 +27,7 @@ class ActionController extends Controller
             $action->date_debut=$request->date_debut;
             $action->date_fin=$request->date_fin;
             $action->budget=$request->budget;
+            $action->status=$request->status;
             $action->save();
      
             return redirect()->back()->with('success',"L'action a été ajoutée avec succès");
@@ -52,6 +53,7 @@ class ActionController extends Controller
             $action->date_debut=$request->date_debut;
             $action->date_fin=$request->date_fin;
             $action->budget=$request->budget;
+            $action->status=$request->status;
             $action->save();
     
             return redirect()->route('actions')->with('success',"L'action a été modifiée avec succès");

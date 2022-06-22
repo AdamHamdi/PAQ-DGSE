@@ -19,6 +19,7 @@ class CreateActionsTable extends Migration
             $table->date('date_debut');
             $table->date('date_fin');
             $table->float('budget');
+            $table->string('status');
             $table->biginteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->biginteger('domaine_id')->unsigned();

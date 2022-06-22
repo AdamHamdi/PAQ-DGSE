@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Admin;
 use App\ResAction;
+use App\Domaine;
 use App\ResDomaine;
+use App\Action;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -50,14 +52,96 @@ class UserController extends Controller
             $resaction=new ResAction();
             $resaction->user_id=$user->id;
             $resaction->save();
-            if (Auth::attempt(['email'=>$request->email,'password'=>$request->password])) {}
-            return redirect('/dashboard')->with("success", "Vous étes inscrit maintenant !");
-    }
+            if (Auth::attempt(['email'=>$request->email,'password'=>$request->password])) { 
+                 
+                
+                $action= DB::table('actions')->select('users.id', 'actions.status','actions.nom_act','actions.budget','actions.status','actions.date_debut','actions.date_fin','users.nom','users.prenom','domaines.nom_domaine')  
+                ->join('users', 'users.id', '=', 'actions.user_id') 
+                ->join('domaines', 'domaines.id', '=', 'actions.domaine_id')
+                ->where('users.id', auth()->user()->id)  
+                ->get();
+            
+                 return view('dashboard.dash-res-action',['action'=>$action])->with("success", "Vous étes inscrit maintenant !");
+    }}
     public function auth(Request $request){
         if(Auth::attempt([ 'email' => $request->email, 'password' => $request->password ])){
-            //$admin=User::all();
-            return view('dashboard.dash-admin');
+            if (Auth::check() && Auth::user()->role==='responsable domaine') {
+                $do = DB::table('resdomaines')->select('domaines.nom_domaine','domaines.budget_domaine')
+                ->join('domaines', 'domaines.id', '=','resdomaines.domaine_id') 
+                 
+                ->get();
+                $action= DB::table('actions')->select('users.id', 'actions.status','actions.nom_act','actions.budget','actions.status','actions.date_debut','actions.date_fin','users.nom','users.prenom','domaines.nom_domaine')  
+                ->join('users', 'users.id', '=', 'actions.user_id') 
+                ->join('domaines', 'domaines.id', '=', 'actions.domaine_id') 
+                ->where('users.id', '=' ,auth()->user()->id) 
+                ->get();
+                return view('dashboard.dash-res-domaine',['domaine'=>$do,'action'=>$action ]);
+            }
+            if (Auth::check() && Auth::user()->role==='responsable action') {
+                $do = DB::table('resdomaines')->select('domaines.nom_domaine','domaines.budget_domaine','domaines.id')
+                ->join('domaines', 'domaines.id', '=','resdomaines.domaine_id')  
+                ->get();
+               
+                $action= DB::table('actions')->select('users.id', 'actions.status','actions.nom_act','actions.budget','actions.status','actions.date_debut','actions.date_fin','users.nom','users.prenom','domaines.nom_domaine')  
+                ->join('users', 'users.id', '=', 'actions.user_id') 
+                ->join('domaines', 'domaines.id', '=', 'actions.domaine_id') 
+                ->where('users.id', auth()->user()->id) 
+                ->get();
+                return view('dashboard.dash-res-action',['domaine'=>$do,'action'=>$action]) ;
+            }
+            if (Auth::check() && Auth::user()->role==='admin') {
+                $do= Domaine::all() ;
+                $users = DB::table('resdomaines')->select( ) 
+                ->join('users', 'users.id', '=', 'resdomaines.user_id') 
+                ->where('resdomaines.user_id', '=' ,auth()->user()->id) 
+                ->get();
+                $action= DB::table('actions')->select('users.id', 'actions.status','actions.nom_act','actions.budget','actions.status','actions.date_debut','actions.date_fin','users.nom','users.prenom','domaines.nom_domaine')  
+                ->join('users', 'users.id', '=', 'actions.user_id') 
+                ->join('domaines', 'domaines.id', '=', 'actions.domaine_id') 
+                ->get();
+                return view('dashboard.dash-admin',['domaine'=>$do,'action'=>$action]) ;      
+            }
+             
+  
+             
     }
+}
+public function action(){
+    $action=Action::with('user','domaine')->get();
+    return $action;
+}
+public function dashboard_admin(){
+    $do=Domaine::with('actions')->get();
+    $action= DB::table('actions')->select('users.id', 'actions.status','actions.nom_act','actions.budget','actions.status','actions.date_debut','actions.date_fin','users.nom','users.prenom','domaines.nom_domaine')  
+    ->join('users', 'users.id', '=', 'actions.user_id') 
+    ->join('domaines', 'domaines.id', '=', 'actions.domaine_id') 
+    ->get();
+      return view('dashboard.dash-admin',['domaine'=>$do,'action'=>$action,  ]);
+  
+}
+public function dashboard_responsable_domaine(){
+    $do = DB::table('resdomaines')->select('domaines.nom_domaine','domaines.budget_domaine')
+    ->join('domaines', 'domaines.id', '=','resdomaines.domaine_id') 
+     
+    ->get();
+    $action= DB::table('actions')->select('users.id', 'actions.status','actions.nom_act','actions.budget','actions.status','actions.date_debut','actions.date_fin','users.nom','users.prenom','domaines.nom_domaine')  
+    ->join('users', 'users.id', '=', 'actions.user_id') 
+    ->join('domaines', 'domaines.id', '=', 'actions.domaine_id') 
+    ->where('users.id', '=' ,auth()->user()->id) 
+    ->get();
+    return view('dashboard.dash-res-domaine',['domaine'=>$do,'action'=>$action ]);
+  
+}
+public function dashboard_responsable_action(){
+    $do=Domaine::with('actions')->get();
+  
+    $action= DB::table('actions')->select('users.id', 'actions.status','actions.nom_act','actions.budget','actions.status','actions.date_debut','actions.date_fin','users.nom','users.prenom','domaines.nom_domaine')  
+    ->join('users', 'users.id', '=', 'actions.user_id') 
+    ->join('domaines', 'domaines.id', '=', 'actions.domaine_id') 
+    ->where('users.id', '=' ,auth()->user()->id) 
+    ->get();
+    return view('dashboard.dash-res-action',['domaine'=>$do,'action'=>$action ]);
+  
 }
     public function ResDomaineStore(Request $request){
         request()->validate([
@@ -93,10 +177,22 @@ class UserController extends Controller
             $user->save();
             $resaction=new Resdomaine();
             $resaction->user_id=$user->id;
+            $resaction->domaine_id=$request->domaine_id;
+           
             $resaction->save();
-            if (Auth::attempt(['email'=>$request->email,'password'=>$request->password])) {}
-            return redirect('/dashboard')->with("success", "Vous étes inscrit maintenant !");
-    }
+           
+            if (Auth::attempt(['email'=>$request->email,'password'=>$request->password])) { 
+            $do = DB::table('resdomaines')->select('domaines.nom_domaine','domaines.budget_domaine')
+            ->join('domaines', 'domaines.id', '=','resdomaines.domaine_id')  
+            ->get();
+            $users = DB::table('resdomaines')->select( ) 
+            ->join('users', 'users.id', '=', 'resdomaines.user_id') 
+            ->where('resdomaines.user_id', '=' ,auth()->user()->id) 
+            ->get();
+            $action=Action::with('user','domaine')->get();
+        
+             return view('dashboard.dash-admin',['domaine'=>$do,'u'=>$users, 'action=>$action'])->with("success", "Vous étes inscrit maintenant !");
+    }}
     public function logout(){
         Auth::logout();
         return redirect('/login');

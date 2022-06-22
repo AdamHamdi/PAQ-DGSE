@@ -56,7 +56,7 @@
     </div>
 
     <div class="col-12 col-sm-12 col-md-12 col-lg-6  px-2 ">
-        <div class="border p-2">
+        <div class="border p-2" style="overflow:auto">
             <div class="mb-2">
             <span class="text-secondary font-weight-bold ">Liste des produits </span>
             </div>
