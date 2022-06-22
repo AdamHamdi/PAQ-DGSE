@@ -68,14 +68,15 @@ class UserController extends Controller
             if (Auth::check() && Auth::user()->role==='responsable domaine') {
                 $do = DB::table('resdomaines')->select('domaines.nom_domaine','domaines.budget_domaine')
                 ->join('domaines', 'domaines.id', '=','resdomaines.domaine_id') 
-                 
                 ->get();
-                $action= DB::table('actions')->select('users.id', 'actions.status','actions.nom_act','actions.budget','actions.status','actions.date_debut','actions.date_fin','users.nom','users.prenom','domaines.nom_domaine')  
+                $action= DB::table('actions')->select('users.id' ,'actions.nom_act','actions.budget','actions.status','actions.date_debut','actions.date_fin','users.nom','users.prenom','domaines.nom_domaine')  
                 ->join('users', 'users.id', '=', 'actions.user_id') 
                 ->join('domaines', 'domaines.id', '=', 'actions.domaine_id') 
                 ->where('users.id', '=' ,auth()->user()->id) 
                 ->get();
-                return view('dashboard.dash-res-domaine',['domaine'=>$do,'action'=>$action ]);
+                $act=Action::where('status','en cours')->where('user_id', auth()->user()->id)->count();
+                $act_ter=Action::where('status','terminee')->where('user_id', auth()->user()->id)->count();
+                return view('dashboard.dash-res-domaine',['domaine'=>$do,'action'=>$action,'act'=>$act,'act_ter'=>$act_ter ]);
             }
             if (Auth::check() && Auth::user()->role==='responsable action') {
                 $do = DB::table('resdomaines')->select('domaines.nom_domaine','domaines.budget_domaine','domaines.id')
@@ -115,8 +116,9 @@ public function dashboard_admin(){
     $action= DB::table('actions')->select('users.id', 'actions.status','actions.nom_act','actions.budget','actions.status','actions.date_debut','actions.date_fin','users.nom','users.prenom','domaines.nom_domaine')  
     ->join('users', 'users.id', '=', 'actions.user_id') 
     ->join('domaines', 'domaines.id', '=', 'actions.domaine_id') 
-    ->get();
-      return view('dashboard.dash-admin',['domaine'=>$do,'action'=>$action,  ]);
+    ->get(); $act=Action::where('status','en cours')->count();
+    $act_ter=Action::where('status','terminee')->count();
+    return view('dashboard.dash-res-domaine',['domaine'=>$do,'action'=>$action,'act'=>$act,'act_ter'=>$act_ter ]);
   
 }
 public function dashboard_responsable_domaine(){
@@ -128,8 +130,9 @@ public function dashboard_responsable_domaine(){
     ->join('users', 'users.id', '=', 'actions.user_id') 
     ->join('domaines', 'domaines.id', '=', 'actions.domaine_id') 
     ->where('users.id', '=' ,auth()->user()->id) 
-    ->get();
-    return view('dashboard.dash-res-domaine',['domaine'=>$do,'action'=>$action ]);
+    ->get(); $act=Action::where('status','en cours')->where('user_id', auth()->user()->id)->count();
+    $act_ter=Action::where('status','terminee')->where('user_id', auth()->user()->id)->count();
+    return view('dashboard.dash-res-domaine',['domaine'=>$do,'action'=>$action,'act'=>$act,'act_ter'=>$act_ter ]);
   
 }
 public function dashboard_responsable_action(){
@@ -190,8 +193,10 @@ public function dashboard_responsable_action(){
             ->where('resdomaines.user_id', '=' ,auth()->user()->id) 
             ->get();
             $action=Action::with('user','domaine')->get();
-        
-             return view('dashboard.dash-admin',['domaine'=>$do,'u'=>$users, 'action=>$action'])->with("success", "Vous étes inscrit maintenant !");
+            $act=Action::where('status','en cours')->where('user_id', auth()->user()->id)->count();
+            $act_ter=Action::where('status','terminee')->where('user_id', auth()->user()->id)->count();
+            return view('dashboard.dash-res-domaine',['domaine'=>$do,'action'=>$action,'act'=>$act,'act_ter'=>$act_ter ])->with("success", "Vous étes inscrit maintenant !");
+         
     }}
     public function logout(){
         Auth::logout();

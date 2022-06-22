@@ -13,9 +13,14 @@ class ActionController extends Controller
 {
     //
     public function index(){
-        $action=Action::paginate(9);
+        $action=Action::OrderBy('created_at','DESC')->paginate(9);
         $domaine=Domaine::all();
-        return view('admin.action.action-liste',['a'=>$action,'d'=>$domaine]);
+        $do = DB::table('resdomaines')->select('domaines.nom_domaine','domaines.budget_domaine','resdomaines.domaine_id')
+        ->join('domaines', 'domaines.id', '=','resdomaines.domaine_id')
+        ->join('users', 'users.id', '=','resdomaines.user_id')
+         ->where('resdomaines.user_id', '=' ,auth()->user()->id)  
+        ->get();
+        return view('admin.action.action-liste',['a'=>$action,'d'=>$do]);
     }
     /**** new action store */
     public function store(Request $request){
@@ -28,11 +33,22 @@ class ActionController extends Controller
             $action->date_fin=$request->date_fin;
             $action->budget=$request->budget;
             $action->status=$request->status;
+            
             $action->save();
+            $action->budget_dom=$request->budget_dom;
+        $budget=Domaine::select('budget_domaine')
+        ->where('id', $action->domaine_id=$request->domaine_id)->get();
+ 
+            Domaine::where('id', $action->domaine_id=$request->domaine_id)
+            ->update(['budget_domaine' => ($action->budget_dom - $action->budget)]);
+            
+      
+
      
             return redirect()->back()->with('success',"L'action a été ajoutée avec succès");
         
     }
+
             /***edit */
             public function edit($id){
                 $acti=Action::findOrFail($id);

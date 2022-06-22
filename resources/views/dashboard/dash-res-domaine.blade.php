@@ -55,12 +55,17 @@ if ($d->nom_domaine === 'Gestion et governance') {
                 <div class="d-flex align-items-center flex-column text-center ">
                     <small class="text-white ">Action(s) en cours</small>
                     <h4 class="text-white font-weight-bold">
+                    @if($act)
+                    {{$act}}
+                     @endif 
                     </h4>
                 </div>
                 <div class="d-flex align-items-center flex-column text-center ">
                     <small class="text-white ">Action(s) en terminée(s)</small>
                     <h4 class="text-white font-weight-bold"> 
-                     
+                    @if($act_ter)
+                    {{$act_ter}}
+                     @endif 
                 </h4>
                 </div>
             </div>

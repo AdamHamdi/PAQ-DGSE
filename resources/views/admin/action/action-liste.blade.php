@@ -89,7 +89,7 @@
                                     class="fad fa-home-alt text-danger mr-2"></i><span class="text-secondary">Domaine
                                     :</span> </span>
                         </td>
-                        <td style="width:50%"><span class="text-secondary">{{$action->domaine->nom_domaine}}</span></td>
+                        <td style="width:50%"><span class="text-secondary">@if($d){{$d->domaine->nom_domaine}}@endif</span></td>
                     </tr>
                     <tr>
                         <td style="width:50%">
@@ -170,7 +170,7 @@
                                             <label>Domaine <span class="text-danger">*</span> :</label>
                                             <select name="domaine_id" id="" class="form-control" required>
                                                 @foreach($d as $do)
-                                                <option value="{{ $do->id}}">{{ $do->nom_domaine}}</option>
+                                                <option value="{{ $do->domaine_id}}">{{ $do->nom_domaine}}</option>
                                                 @endforeach
                                             </select>
                                             @if($errors->get('domaine_id'))
@@ -179,6 +179,9 @@
                                             <label style="color:red">{{ $message }}</label>
                                             @endforeach @endif
                                         </div>
+                                       @if($d)
+                                        <input type="text" name="budget_dom" value="{{ $do->budget_domaine}}">
+                                        @endif
                                     </div>
                                     <div class="col-12 col-sm-4 ">
                                         <div class="form-group">

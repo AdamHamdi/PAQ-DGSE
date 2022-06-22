@@ -55,7 +55,7 @@ if ($d->nom_domaine === 'Gestion et governance') {
                 <div class="d-flex align-items-center flex-column text-center ">
                     <small class="text-white ">Action(s) en cours</small>
                     <h4 class="text-white font-weight-bold">
-                    {{  \App\Action::all()->where('status','en cours')->where($d->id, '=' ,$d->actions('domaine_id'))->count()  }}
+                 
                     </h4>
                 </div>
                 <div class="d-flex align-items-center flex-column text-center ">
