@@ -225,7 +225,7 @@
                                             <select class="form-control" name="status"  
                                                 required>
                                                 <option value="en cours">En cours</option>
-                                                <option value="termine">Términée</option>
+                                                <option value="terminee">Términée</option>
                                                 
                                             </select>
                                             @if($errors->get('status'))

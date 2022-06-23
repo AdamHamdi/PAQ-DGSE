@@ -40,10 +40,7 @@ if ($d->nom_domaine === 'Gestion et governance') {
                     <small class="text-white ">Budget</small>
                     <h6 class="text-white font-weight-bold">{{$d->budget_domaine}} dt</h6>
                 </div>
-                <div class="d-flex align-items-center flex-column">
-                    <small class="text-white ">Budget Résolu</small>
-                    <h6 class="text-white font-weight-bold">1000 dt</h6>
-                </div>
+                
             </div>
            
             <div class="d-flex align-items-center justify-content-between  w-100">
