@@ -90,4 +90,4 @@ class ActionController extends Controller
         // dd($acti);
         return view('admin.action.action-liste',['action'=> $acti]);
     }
-    }
+}

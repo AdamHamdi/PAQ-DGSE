@@ -91,7 +91,12 @@ Route::put('reunion/{id}/update', 'ReunionController@update')->name('reunion-upd
 Route::get('/dashbord/admin', 'UserController@dashboard_admin')->name('dashboard-admin');
 Route::get('/dashbord/responsable-domaine', 'UserController@dashboard_responsable_domaine')->name('dashboard-responsable-domaine');
 Route::get('/dashbord/responsable-action', 'UserController@dashboard_responsable_action')->name('dashboard-responsable-action');
-  Route::get('/route', 'ActionController@budget')->name('route');
+Route::get('/route', 'ActionController@budget')->name('route');
+// --------------------------- users---------------------
+Route::delete('/users/{id}', 'UserController@delete')->name('delete-user');
+Route::get('/dashbord/responsable-domaine', 'UserController@dashboard_responsable_domaine')->name('dashboard-responsable-domaine');
+Route::get('/dashbord/responsable-action', 'UserController@dashboard_responsable_action')->name('dashboard-responsable-action');
+Route::get('/route', 'ActionController@budget')->name('route');
  
 
 });

@@ -38,7 +38,7 @@ if ($d->nom_domaine === 'Gestion et governance') {
             <div class="d-flex align-items-center justify-content-between mb-3 w-100">
                 <div class="d-flex align-items-center flex-column">
                     <small class="text-white ">Budget</small>
-                    <h6 class="text-white font-weight-bold">{{$d->budget_domaine}} dt</h6>
+                    <h6 class="text-white font-weight-bold">{{$d->budget_domaine}} DNT</h6>
                 </div>
                 
             </div>
@@ -87,7 +87,7 @@ if ($d->nom_domaine === 'Gestion et governance') {
                    
                     <div class="mb-4 d-flex align-items-center justify-content-between   px-2 ">
                         <h5 class="card-title mb-0 text-white font-weight-bold text-capitalize">{{$a->nom_act}}</h5>
-                        <h5 class="card-title mb-0 text-white font-weight-bold">{{$a->budget}}</h5>
+                        <h5 class="card-title mb-0 text-white font-weight-bold">{{$a->budget}} DNT</h5>
                     </div>
                     <div class="row align-items-center justify-content-between mb-2 px-3 d-flex">
                         <div class=" ">
