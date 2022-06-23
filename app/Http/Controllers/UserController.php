@@ -67,16 +67,18 @@ class UserController extends Controller
         if(Auth::attempt([ 'email' => $request->email, 'password' => $request->password ])){
             if (Auth::check() && Auth::user()->role==='responsable domaine') {
                 $do = DB::table('resdomaines')->select('domaines.nom_domaine','domaines.budget_domaine')
-                ->join('domaines', 'domaines.id', '=','resdomaines.domaine_id') 
-                ->get();
-                $action= DB::table('actions')->select('users.id' ,'actions.nom_act','actions.budget','actions.status','actions.date_debut','actions.date_fin','users.nom','users.prenom','domaines.nom_domaine')  
-                ->join('users', 'users.id', '=', 'actions.user_id') 
-                ->join('domaines', 'domaines.id', '=', 'actions.domaine_id') 
-                ->where('users.id', '=' ,auth()->user()->id) 
-                ->get();
-                $act=Action::where('status','en cours')->where('user_id', auth()->user()->id)->count();
-                $act_ter=Action::where('status','terminee')->where('user_id', auth()->user()->id)->count();
-                return view('dashboard.dash-res-domaine',['domaine'=>$do,'action'=>$action,'act'=>$act,'act_ter'=>$act_ter ]);
+    ->join('domaines', 'domaines.id', '=','resdomaines.domaine_id')  
+    ->join('users', 'users.id', '=','resdomaines.user_id') 
+    ->where('resdomaines.user_id', '=' ,auth()->user()->id) 
+    ->get();
+    $action= DB::table('actions')->select('users.id' ,'actions.nom_act','actions.budget','actions.status','actions.date_debut','actions.date_fin','users.nom','users.prenom','domaines.nom_domaine')  
+    ->join('users', 'users.id', '=', 'actions.user_id') 
+    ->join('domaines', 'domaines.id', '=', 'actions.domaine_id') 
+    ->where('users.id', '=' ,auth()->user()->id) 
+    ->get();
+    $act=Action::where('status','en cours')->where('user_id', auth()->user()->id)->count();
+    $act_ter=Action::where('status','terminee')->where('user_id', auth()->user()->id)->count();
+    return view('dashboard.dash-res-domaine',['domaine'=>$do,'action'=>$action,'act'=>$act,'act_ter'=>$act_ter ]);
             }
             if (Auth::check() && Auth::user()->role==='responsable action') {
                 $do = DB::table('resdomaines')->select('domaines.nom_domaine','domaines.budget_domaine','domaines.id')
@@ -123,17 +125,19 @@ public function dashboard_admin(){
 }
 public function dashboard_responsable_domaine(){
     $do = DB::table('resdomaines')->select('domaines.nom_domaine','domaines.budget_domaine')
-    ->join('domaines', 'domaines.id', '=','resdomaines.domaine_id') 
-     
+    ->join('domaines', 'domaines.id', '=','resdomaines.domaine_id')  
+    ->join('users', 'users.id', '=','resdomaines.user_id') 
+    ->where('resdomaines.user_id', '=' ,auth()->user()->id) 
     ->get();
-    $action= DB::table('actions')->select('users.id', 'actions.status','actions.nom_act','actions.budget','actions.status','actions.date_debut','actions.date_fin','users.nom','users.prenom','domaines.nom_domaine')  
+    $action= DB::table('actions')->select('users.id' ,'actions.nom_act','actions.budget','actions.status','actions.date_debut','actions.date_fin','users.nom','users.prenom','domaines.nom_domaine')  
     ->join('users', 'users.id', '=', 'actions.user_id') 
     ->join('domaines', 'domaines.id', '=', 'actions.domaine_id') 
     ->where('users.id', '=' ,auth()->user()->id) 
-    ->get(); $act=Action::where('status','en cours')->where('user_id', auth()->user()->id)->count();
+    ->get();
+    $act=Action::where('status','en cours')->where('user_id', auth()->user()->id)->count();
     $act_ter=Action::where('status','terminee')->where('user_id', auth()->user()->id)->count();
     return view('dashboard.dash-res-domaine',['domaine'=>$do,'action'=>$action,'act'=>$act,'act_ter'=>$act_ter ]);
-  
+
 }
 public function dashboard_responsable_action(){
     $do=Domaine::with('actions')->get();
@@ -185,17 +189,20 @@ public function dashboard_responsable_action(){
             $resaction->save();
            
             if (Auth::attempt(['email'=>$request->email,'password'=>$request->password])) { 
-            $do = DB::table('resdomaines')->select('domaines.nom_domaine','domaines.budget_domaine')
-            ->join('domaines', 'domaines.id', '=','resdomaines.domaine_id')  
-            ->get();
-            $users = DB::table('resdomaines')->select( ) 
-            ->join('users', 'users.id', '=', 'resdomaines.user_id') 
-            ->where('resdomaines.user_id', '=' ,auth()->user()->id) 
-            ->get();
-            $action=Action::with('user','domaine')->get();
-            $act=Action::where('status','en cours')->where('user_id', auth()->user()->id)->count();
-            $act_ter=Action::where('status','terminee')->where('user_id', auth()->user()->id)->count();
-            return view('dashboard.dash-res-domaine',['domaine'=>$do,'action'=>$action,'act'=>$act,'act_ter'=>$act_ter ])->with("success", "Vous étes inscrit maintenant !");
+                $do = DB::table('resdomaines')->select('domaines.nom_domaine','domaines.budget_domaine')
+                ->join('domaines', 'domaines.id', '=','resdomaines.domaine_id') 
+                ->join('users', 'users.id', '=','resdomaines.user_id') 
+                ->where('resdomaines.user_id', '=' ,auth()->user()->id) 
+                ->get();
+                $action= DB::table('actions')->select('users.id' ,'actions.nom_act','actions.budget','actions.status','actions.date_debut','actions.date_fin','users.nom','users.prenom','domaines.nom_domaine')  
+                ->join('users', 'users.id', '=', 'actions.user_id') 
+                ->join('domaines', 'domaines.id', '=', 'actions.domaine_id') 
+                ->where('users.id', '=' ,auth()->user()->id) 
+                ->get();
+                $act=Action::where('status','en cours')->where('user_id', auth()->user()->id)->count();
+                $act_ter=Action::where('status','terminee')->where('user_id', auth()->user()->id)->count();
+                return view('dashboard.dash-res-domaine',['domaine'=>$do,'action'=>$action,'act'=>$act,'act_ter'=>$act_ter ])
+           ->with("success", "Vous étes inscrit maintenant !");
          
     }}
     public function logout(){
