@@ -180,7 +180,7 @@
                                             @endforeach @endif
                                         </div>
                                        @if($d)
-                                        <input type="text" name="budget_dom" value="{{ $do->budget_domaine}}">
+                                        <input type="hidden" name="budget_dom" value="{{ $do->budget_domaine}}">
                                         @endif
                                     </div>
                                     <div class="col-12 col-sm-4 ">
