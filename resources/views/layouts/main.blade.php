@@ -109,7 +109,7 @@
                                     class="pcoded-mtext">Rendez-vous</span></a>
                         </li>
                         @endif
-                        @if ((Auth::user()->role =='responsable domaine') || (Auth::user()->role =='responsable domaine'))
+                        @if ((Auth::user()->role =='responsable domaine') || (Auth::user()->role =='responsable action'))
                         <li class="nav-item pcoded-hasmenu">
                             <a href="{{ route('cahier-charge')}}" class="nav-link"><span class="pcoded-micon"><i
                                         class="fad fa-books "></i> </span><span class="pcoded-mtext">Cahier de
