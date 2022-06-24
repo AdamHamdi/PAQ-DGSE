@@ -79,7 +79,7 @@ class ActionController extends Controller
             $action->status=$request->status;
             $action->save();
     
-            return redirect()->route('actions')->with('success',"L'action a été modifiée avec succès");
+            return redirect()->route('actions-action')->with('success',"L'action a été modifiée avec succès");
         
         }
         /***delete */

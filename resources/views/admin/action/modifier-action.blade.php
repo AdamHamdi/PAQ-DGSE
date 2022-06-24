@@ -86,8 +86,9 @@
                         <div class="col-12 col-sm-4 ">
                             <div class="form-group">
                                 <label>Status <span class="text-danger">*</span> :</label>
-                                <select class="form-control"   name="status" value="{{$acti->status}}"
+                                <select class="form-control"   name="status" 
                                     required>
+                                    <option value="{{$acti->status}}">{{$acti->status}}</option>
                                     </select>
                                 @if($errors->get('status'))
                                 @foreach($errors->get('status') as
