@@ -96,12 +96,20 @@
                                     class="font-weight-700">Domaines</span></a>
                         </li>
                         @endif
-                       
+                        @if ((Auth::user()->role =='responsable domaine') || (Auth::user()->role =='admin'))
                         <li class="nav-item">
                             <a href="{{ route('actions')}}" class="nav-link"><span class="pcoded-micon"><i
                                         class="feather icon-home"></i></span><span
                                     class="font-weight-700">Actions</span></a>
+                        </li> 
+                        @endif
+                        @if (Auth::user()->role =='responsable action')
+                        <li class="nav-item">
+                            <a href="{{ route('actions-action')}}" class="nav-link"><span class="pcoded-micon"><i
+                                        class="feather icon-home"></i></span><span
+                                    class="font-weight-700">Actions</span></a>
                         </li>
+                        @endif
                         @if (Auth::user()->role =='admin')
                         <li class="nav-item pcoded-hasmenu">
                             <a href="{{ route('rendez-vous')}}" class="nav-link"><span class="pcoded-micon"><i class="fal fa-calendar-alt  "></i> </span>

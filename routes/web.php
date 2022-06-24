@@ -48,7 +48,7 @@ Route::delete('rendez-vous/{id}', 'RendezVousController@delete')->name('rendez-v
 Route::get('rendez-vous/{id}/edit', 'RendezVousController@edit')->name('rendez-vous-edit');
 Route::put('rendez-vous/{id}/update', 'RendezVousController@update')->name('rendez-vous-update');
 //-----------------------------------Actions---------------------------
-
+Route::get('/action/responsable-action', 'ActionController@responsable_action')->name('actions-action');
 Route::get('/actions', 'ActionController@index')->name('actions');
 Route::post('/action/ajouter', 'ActionController@Store')->name('actions-store');
 Route::delete('action/{id}', 'ActionController@delete')->name('Action-delete');

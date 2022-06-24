@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Validator;
 class ActionController extends Controller
 {
     //
+   
     public function index(){
         $action=Action::OrderBy('created_at','DESC')->paginate(9);
         $domaine=Domaine::all();
@@ -21,6 +22,12 @@ class ActionController extends Controller
          ->where('resdomaines.user_id', '=' ,auth()->user()->id)  
         ->get();
         return view('admin.action.action-liste',['a'=>$action,'d'=>$do]);
+    }
+    public function responsable_action(){
+        $action=Action::OrderBy('created_at','DESC')->paginate(9);
+        $do =Domaine::all();
+         
+        return view('admin.action.action-liste-action',['a'=>$action,'do'=>$do]);
     }
     /**** new action store */
     public function store(Request $request){
